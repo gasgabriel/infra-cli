@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Infra CLI - Health Report</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .description {
+            color: #666;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: #f2f2f2;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Infra CLI - Health Report</h1>
+
+    <p class="description">
+        Relatório de saúde dos servidores Linux.
+    </p>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Servidor</th>
+                <th>CPU</th>
+                <th>Memória</th>
+                <th>Disco</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for server in servers %}
+
+            <tr>
+
+                <td>
+                    {{ server.host }}
+                </td>
+
+                <td>
+                    {% if server.cpu is not none %}
+                        {{ "%.2f"|format(server.cpu) }}%
+                    {% else %}
+                        ---
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if server.memory is not none %}
+                        {{ "%.2f"|format(server.memory) }}%
+                    {% else %}
+                        ---
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if server.disk is not none %}
+                        {{ "%.2f"|format(server.disk) }}%
+                    {% else %}
+                        ---
+                    {% endif %}
+                </td>
+
+                <td class="status">
+                    {{ server.status }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</body>
+
+</html>

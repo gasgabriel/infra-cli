@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "infra-cli"
+version = "0.1.0"
+description = "CLI for Linux infrastructure health monitoring and automation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = " " }
+]
+
+dependencies = [
+	"click", "pytest", "PyYAML", "paramiko", "Jinja2", "requests",
+]
+
+[project.scripts]
+infra-cli = "infra_cli.cli:cli"
+
+[tool.setuptools.packages.find]
+where = ["src"]

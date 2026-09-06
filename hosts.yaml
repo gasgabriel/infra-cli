@@ -1,0 +1,10 @@
+hosts:
+  - name: server01
+    hostname: 192.168.1.101
+    port: 22
+    username: ubuntu
+
+  - name: server03
+    hostname: 192.168.0.13
+    port: 22
+    username: piquitucha
